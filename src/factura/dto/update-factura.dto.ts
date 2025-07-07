@@ -1,4 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateFacturaDto } from './create-factura.dto';
+import { IsDateString } from 'class-validator';
 
-export class UpdateFacturaDto extends PartialType(CreateFacturaDto) {}
+
+export class UpdateFacturaDto {
+    @IsDateString()
+    fechaPago: Date;
+}

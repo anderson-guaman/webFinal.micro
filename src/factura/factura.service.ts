@@ -47,8 +47,21 @@ export class FacturaService {
     return `This action returns a #${id} factura`;
   }
 
-  update(id: number, updateFacturaDto: UpdateFacturaDto) {
-    return `This action updates a #${id} factura`;
+  async update(id: number) {
+    try {
+      // const { fechaPago } = updateFacturaDto;
+      const factura = await this.facturaRepository.findOne({ where: { idFactura: id } });
+      if (!factura) {
+        throw new NotFoundException('Factura no encontrada');
+      }
+      // if (!fechaPago) {
+      //   throw new NotFoundException('No existe fecha de pago')
+      // }
+      factura.fechaPago = new Date();
+      return await this.facturaRepository.save(factura);
+    } catch (error) {
+      throw error;
+    }
   }
 
   remove(id: number) {
