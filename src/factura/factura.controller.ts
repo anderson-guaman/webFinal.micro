@@ -26,8 +26,8 @@ export class FacturaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFacturaDto: UpdateFacturaDto) {
-    return this.facturaService.update(+id, updateFacturaDto);
+  update(@Param('id') id: string, ) {
+    return this.facturaService.update(+id);
   }
 
   @Delete(':id')
