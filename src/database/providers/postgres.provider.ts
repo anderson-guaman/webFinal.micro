@@ -1,6 +1,7 @@
 
 
 import { Client } from 'src/client/entities/client.entity';
+import { Servicio } from 'src/servicio/entities/servicio.entity';
 import { DataSource } from 'typeorm';
 
 export const PostgresProvider = [
@@ -21,8 +22,8 @@ export const PostgresProvider = [
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         entities: [
-          Client
-          // Venta,
+          Client,
+          Servicio
           // ReglaComision,
         ],
         synchronize: process.env.STAGE == 'dev',
