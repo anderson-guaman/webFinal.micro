@@ -1,4 +1,5 @@
 import { Client } from "src/client/entities/client.entity";
+import { Plan } from "src/plan/entities/plan.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -13,8 +14,15 @@ export class Servicio {
     estado: string;
 
     @ManyToOne(
-        () => Client, client => client.servicios, 
+        () => Client, client => client.servicios,
         { eager: true }
     )
     cliente: Client;
+
+    @ManyToOne(
+        () => Plan, 
+        plan => plan.servicios, 
+        { eager: true }
+    )
+    plan: Plan;
 }

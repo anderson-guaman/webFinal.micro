@@ -10,4 +10,6 @@ export class CreateServicioDto {
     @IsInt()
     clienteId: number;
 
+    @IsInt()
+    planId: number;
 }
