@@ -1,6 +1,7 @@
 
 
 import { Client } from 'src/client/entities/client.entity';
+import { Factura } from 'src/factura/entities/factura.entity';
 import { Plan } from 'src/plan/entities/plan.entity';
 import { Servicio } from 'src/servicio/entities/servicio.entity';
 import { DataSource } from 'typeorm';
@@ -25,7 +26,8 @@ export const PostgresProvider = [
         entities: [
           Client,
           Servicio,
-          Plan
+          Plan,
+          Factura
         ],
         synchronize: process.env.STAGE == 'dev',
       });

@@ -1,6 +1,7 @@
 import { Client } from "src/client/entities/client.entity";
+import { Factura } from "src/factura/entities/factura.entity";
 import { Plan } from "src/plan/entities/plan.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Servicio {
@@ -20,9 +21,13 @@ export class Servicio {
     cliente: Client;
 
     @ManyToOne(
-        () => Plan, 
-        plan => plan.servicios, 
+        () => Plan,
+        plan => plan.servicios,
         { eager: true }
     )
     plan: Plan;
+    
+    @OneToMany(() => Factura, 
+    factura => factura.servicio)
+    facturas: Factura[];
 }

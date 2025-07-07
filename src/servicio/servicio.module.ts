@@ -17,5 +17,6 @@ import { PlanModule } from 'src/plan/plan.module';
     ServicioService, 
     ...ServicioProvider
   ],
+  exports:[...ServicioProvider]
 })
 export class ServicioModule {}

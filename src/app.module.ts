@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { PlanModule } from './plan/plan.module';
+import { FacturaModule } from './factura/factura.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { PlanModule } from './plan/plan.module';
     DatabaseModule,
     ClientModule,
     ServicioModule,
-    PlanModule
+    PlanModule,
+    FacturaModule
   ],
   controllers: [AppController],
   providers: [AppService],
