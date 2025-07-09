@@ -7,6 +7,8 @@ import { DatabaseModule } from './database/database.module';
 import { ServicioModule } from './servicio/servicio.module';
 import { PlanModule } from './plan/plan.module';
 import { FacturaModule } from './factura/factura.module';
+import { AuthModule } from './auth/auth.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -17,7 +19,9 @@ import { FacturaModule } from './factura/factura.module';
     ClientModule,
     ServicioModule,
     PlanModule,
-    FacturaModule
+    FacturaModule,
+    AuthModule,
+    UsuarioModule
   ],
   controllers: [AppController],
   providers: [AppService],
