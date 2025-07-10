@@ -1,23 +1,31 @@
-import { IsInt, IsString, Length } from "class-validator"
+import { IsEmail, IsInt, IsNotEmpty, IsString, Length } from "class-validator"
 
 export class CreateClientDto {
-     @IsInt()
-    idCliente: number
+    @IsInt()
+    idCliente: number;
 
     @IsString()
-    nombre: string
+    @IsNotEmpty({ message: 'El nombre es obligatorio' })
+    @Length(2, 50, { message: 'El nombre debe tener entre 2 y 50 caracteres' })
+    nombre: string;
 
     @IsString()
-    direccion: string
+    @IsNotEmpty({ message: 'La dirección es obligatoria' })
+    @Length(5, 100, { message: 'La dirección debe tener entre 5 y 100 caracteres' })
+    direccion: string;
 
     @IsString()
-    @Length(10, 10)
-    telefono: string
+    @IsNotEmpty({ message: 'El teléfono es obligatorio' })
+    @Length(10, 10, { message: 'El teléfono debe tener exactamente 10 dígitos' })
+    telefono: string;
 
     @IsString()
-    @Length(10, 10)
-    identificacion: string
+    @IsNotEmpty({ message: 'La identificación es obligatoria' })
+    @Length(10, 10, { message: 'La identificación debe tener exactamente 10 dígitos' })
+    identificacion: string;
 
     @IsString()
-    correo: string
+    @IsNotEmpty({ message: 'El correo es obligatorio' })
+    @IsEmail({}, { message: 'El correo debe tener un formato válido' })
+    correo: string;
 }
