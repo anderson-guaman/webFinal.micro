@@ -37,7 +37,8 @@ export class ClientService {
 
   async update(id: number, updateClientDto: UpdateClientDto) {
     try {
-      const cliente = await this.clientRepository.findOneBy({ idCliente: id })
+      console.log(id)
+      const cliente = await this.clientRepository.findOneBy({ idCliente: id})
       if(!cliente) throw new NotFoundException('Cliente no encontrado')
       Object.assign(cliente!, updateClientDto);
       return this.clientRepository.save(cliente!);
