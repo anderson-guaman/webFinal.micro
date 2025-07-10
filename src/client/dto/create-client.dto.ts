@@ -1,8 +1,6 @@
 import { IsEmail, IsInt, IsNotEmpty, IsString, Length } from "class-validator"
 
 export class CreateClientDto {
-    @IsInt()
-    idCliente: number;
 
     @IsString()
     @IsNotEmpty({ message: 'El nombre es obligatorio' })
