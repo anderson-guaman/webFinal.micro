@@ -1,7 +1,6 @@
 import { IsEmail, IsInt, IsNotEmpty, IsString, Length } from "class-validator"
 
 export class CreateClientDto {
-
     @IsString()
     @IsNotEmpty({ message: 'El nombre es obligatorio' })
     @Length(2, 50, { message: 'El nombre debe tener entre 2 y 50 caracteres' })
