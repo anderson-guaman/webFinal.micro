@@ -14,9 +14,9 @@ export class UsuarioService {
 
   async create(createUsuarioDto: CreateUsuarioDto) {
     try {
-      const { username, password, role } = createUsuarioDto;
+      const { userName, password, role } = createUsuarioDto;
       const user = this.usuarioRepository.create({
-        username,
+        username:userName,
         password,
         role
       })
@@ -26,10 +26,15 @@ export class UsuarioService {
     }
   }
 
-  findAll() {
+  async findAll() {
     try {
-
-      return `This action returns all usuario`;
+    const usuario = await this.usuarioRepository.find();
+    return usuario.map((u)=>{
+      return {
+        userName: u.username,
+        role: u.role,
+      }
+    })
     } catch (error) {
       throw error;
     }
