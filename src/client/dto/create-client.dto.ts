@@ -1,4 +1,4 @@
-import { IsEmail, IsInt, IsNotEmpty, IsString, Length } from "class-validator"
+import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length } from "class-validator"
 
 export class CreateClientDto {
     @IsString()
@@ -25,4 +25,7 @@ export class CreateClientDto {
     @IsNotEmpty({ message: 'El correo es obligatorio' })
     @IsEmail({}, { message: 'El correo debe tener un formato válido' })
     correo: string;
+
+    @IsOptional()
+    fechaCreacion: Date
 }

@@ -21,8 +21,11 @@ export class Client {
     @Column({ type: 'varchar', length: 100, unique: true })
     correo: string
 
+    @Column({ type: 'date', nullable: true})
+    fechaCreacion: Date;
+
     @OneToMany(
-        () => Servicio, 
+        () => Servicio,
         servicio => servicio.cliente)
     servicios: Servicio[];
 }

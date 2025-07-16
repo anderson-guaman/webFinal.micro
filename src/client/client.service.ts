@@ -14,7 +14,12 @@ export class ClientService {
   async create(createClientDto: CreateClientDto) {
     // return 'This action adds a new client';
     try {
-      const client = this.clientRepository.create(createClientDto);
+
+      const cliente: CreateClientDto ={
+        ...createClientDto,
+        fechaCreacion: new Date()
+      }
+      const client = this.clientRepository.create(cliente);
       return await this.clientRepository.save(client);
     } catch (error) {
       console.log(error);

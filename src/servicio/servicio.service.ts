@@ -1,10 +1,11 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateServicioDto } from './dto/create-servicio.dto';
 import { UpdateServicioDto } from './dto/update-servicio.dto';
-import { Repository } from 'typeorm';
+import { Between, In, LessThan, Repository } from 'typeorm';
 import { Servicio } from './entities/servicio.entity';
 import { Client } from 'src/client/entities/client.entity';
 import { Plan } from 'src/plan/entities/plan.entity';
+import { IConsultaReporte } from './dto/consulta-reporte.dto';
 
 @Injectable()
 export class ServicioService {
@@ -20,6 +21,7 @@ export class ServicioService {
 
   async create(createServicioDto: CreateServicioDto) {
     try {
+
       const cliente = await this.clientRepository.findOne({
         where: { idCliente: createServicioDto.clienteId }
       });
@@ -39,6 +41,7 @@ export class ServicioService {
         estado: createServicioDto.estado,
         cliente: cliente,
         plan: plan,
+        fechaCreacion: new Date()
       });
       return await this.servicioRepository.save(servicio);
     } catch (error) {
@@ -66,4 +69,41 @@ export class ServicioService {
   remove(id: number) {
     return `This action removes a #${id} servicio`;
   }
+
+
+  async obtenerReporte(consulta: IConsultaReporte) {
+    // const servicios = this.servicioRepository.find({
+    //   where:{
+    //     fechaCreacion: Between(consulta.fechaInicio,consulta.fechaFin)
+    //   }
+    // })
+
+    try {
+      const fechaInicio = new Date(consulta.fechaInicio)
+      const fechaFin = new Date(consulta.fechaFin)
+      
+      const clientes = await this.clientRepository.find({
+        where: {
+          fechaCreacion: LessThan(fechaInicio)
+        }
+      })
+      
+      const idsClientesAntiguos = clientes.map(c => c.idCliente);
+      console.log(idsClientesAntiguos)
+      console.log(fechaInicio)
+      console.log(fechaFin)
+
+      const servicios = await this.servicioRepository.find({
+        where: {
+          cliente: In(idsClientesAntiguos),
+          fechaCreacion: Between(fechaInicio, fechaFin),
+        },
+      });
+
+      return servicios;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

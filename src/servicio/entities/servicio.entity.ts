@@ -14,6 +14,9 @@ export class Servicio {
     @Column({ length: 20 })
     estado: string;
 
+    @Column({type: 'date', nullable: true})
+    fechaCreacion: Date
+
     @ManyToOne(
         () => Client, client => client.servicios,
         { eager: true }

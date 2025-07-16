@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ServicioService } from './servicio.service';
 import { CreateServicioDto } from './dto/create-servicio.dto';
 import { UpdateServicioDto } from './dto/update-servicio.dto';
+import { IConsultaReporte } from './dto/consulta-reporte.dto';
 
 @Controller('ServicioController')
 export class ServicioController {
@@ -15,6 +16,11 @@ export class ServicioController {
   @Get()
   findAll() {
     return this.servicioService.findAll();
+  }
+
+  @Post('ObtenerReporte')
+  obtenerReporte(@Body() consulta: IConsultaReporte){
+    return this.servicioService.obtenerReporte(consulta);
   }
 
   @Get(':id')
