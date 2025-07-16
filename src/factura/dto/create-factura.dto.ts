@@ -2,6 +2,7 @@ import { IsDateString, IsNumber, IsOptional, IsInt } from "class-validator";
 
 export class CreateFacturaDto {
   @IsDateString()
+  @IsOptional()
   fechaEmision: string;
 
   @IsNumber()

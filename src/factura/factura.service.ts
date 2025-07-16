@@ -24,7 +24,7 @@ export class FacturaService {
         throw new NotFoundException('Servicio no encontrado');
       }
       const factura = this.facturaRepository.create({
-        fechaEmision: createFacturaDto.fechaEmision,
+        fechaEmision: new Date(),
         monto: createFacturaDto.monto,
         fechaPago: createFacturaDto.fechaPago ?? null,
         servicio: servicio,
