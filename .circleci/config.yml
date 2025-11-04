@@ -20,6 +20,10 @@ jobs:
             npm install
 
       - run:
+          name: Instalar Nest Cli
+          command: npm install -g @nestjs/cli
+
+      - run:
           name: Compilar proyecto
           command: npm run build
 
