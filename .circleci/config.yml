@@ -14,11 +14,6 @@ jobs:
       - checkout
 
       - run:
-          name: Install Nest CLI globally
-          command: npm install -g @nestjs/cli
-
-
-      - run:
           name:  Instalar dependencias
           command: |
             echo " Instalando dependencias del proyecto..."
@@ -26,7 +21,7 @@ jobs:
 
       - run:
           name: Compilar proyecto
-          command: npm run build
+          command: npx nest build
 
       - run:
           name: Ejecutar tests unitarios
