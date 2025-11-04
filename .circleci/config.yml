@@ -17,9 +17,18 @@ jobs:
           name:  Instalar dependencias
           command: |
             echo "📦 Instalando dependencias del proyecto..."
-            npm ci
+            unset NODE_ENV
+            npm ci --include=dev
             echo "⚙️ Instalando Nest CLI globalmente..."
             sudo npm install -g @nestjs/cli
+
+
+      - run:
+          name: 🧩 Verificar Jest y ts-jest
+          command: |
+            echo "🔍 Verificando Jest y ts-jest..."
+            if [ ! -d "node_modules/jest" ]; then npm install --save-dev jest; fi
+            if [ ! -d "node_modules/ts-jest" ]; then npm install --save-dev ts-jest; fi
 
       - run:
           name: Compilar proyecto
