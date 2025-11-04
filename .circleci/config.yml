@@ -19,7 +19,7 @@ jobs:
             echo "📦 Instalando dependencias del proyecto..."
             npm install
             echo "⚙️ Instalando Nest CLI globalmente..."
-            npm install -g @nestjs/cli
+            sudo npm install -g @nestjs/cli
 
       - run:
           name: Compilar proyecto
