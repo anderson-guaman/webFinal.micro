@@ -17,7 +17,7 @@ jobs:
           name:  Instalar dependencias
           command: |
             echo "📦 Instalando dependencias del proyecto..."
-            npm install
+            npm ci
             echo "⚙️ Instalando Nest CLI globalmente..."
             sudo npm install -g @nestjs/cli
 
