@@ -14,8 +14,8 @@ jobs:
       - checkout
 
       - run:
-        name: Install Nest CLI globally
-        command: npm install -g @nestjs/cli
+          name: Install Nest CLI globally
+          command: npm install -g @nestjs/cli
 
 
       - run:
